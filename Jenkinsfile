@@ -2,7 +2,17 @@
     agent any
 
 stages {
-        stage('Build') {
+        
+	  stage('Checkout') {
+            steps {
+                echo "[${new Date().format('HH:mm:ss')}] Cleaning workspace..."
+                deleteDir()
+                checkout scm
+            }
+        }
+
+	
+	stage('Build') {
             steps {
                 echo 'Building...'
             }
