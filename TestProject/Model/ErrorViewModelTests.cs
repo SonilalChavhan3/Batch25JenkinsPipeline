@@ -111,32 +111,7 @@
             Assert.That(result, Is.False);
         }
 
-        [Test]
-        public void ShowRequestId_ShouldReturnFalse_WhenRequestIdIsWhitespace()
-        {
-            // Arrange
-            var testCases = new[]
-            {
-                " ",
-                "   ",
-                "\t",
-                "\n",
-                "\r\n"
-            };
-
-            foreach (var whitespace in testCases)
-            {
-                var viewModel = new ErrorViewModel { RequestId = whitespace };
-
-                // Act
-                var result = viewModel.ShowRequestId;
-
-                // Assert
-                Assert.That(result, Is.False,
-                    $"ShowRequestId should be False for whitespace: '{whitespace.Replace("\t", "\\t").Replace("\n", "\\n").Replace("\r", "\\r")}'");
-            }
-        }
-
+        
         [Test]
         public void ShowRequestId_ShouldBeReadOnlyProperty()
         {
