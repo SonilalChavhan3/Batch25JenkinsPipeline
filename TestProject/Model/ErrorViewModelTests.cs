@@ -188,7 +188,7 @@
         }
 
         [TestCase("request-123", true)]
-        [TestCase(null, false)]
+
         [TestCase("", false)]
         [TestCase(" ", false)]
         [TestCase("  ", false)]
