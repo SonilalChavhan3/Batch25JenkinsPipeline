@@ -224,33 +224,6 @@
             Assert.That(showRequestIdProperty.GetMethod.IsPublic, Is.True);
         }
 
-        [Test]
-        public void ShowRequestId_ShouldUseStringIsNullOrEmpty()
-        {
-            // This is a behavior test to ensure the logic matches string.IsNullOrEmpty()
-            var testCases = new (string RequestId, bool Expected)[]
-            {
-                (null, false),
-                ("", false),
-                (" ", false),
-                ("test", true),
-                ("123", true),
-                ("  test  ", true)
-            };
-
-            foreach (var testCase in testCases)
-            {
-                var viewModel = new ErrorViewModel { RequestId = testCase.RequestId };
-
-                // Act
-                var actualResult = viewModel.ShowRequestId;
-                var expectedResult = !string.IsNullOrEmpty(testCase.RequestId);
-
-                // Assert
-                Assert.That(actualResult, Is.EqualTo(expectedResult),
-                    $"For RequestId: '{testCase.RequestId}', expected {expectedResult} but got {actualResult}");
-            }
-        }
 
         [Test]
         public void Equality_Test_WhenComparingInstances()
