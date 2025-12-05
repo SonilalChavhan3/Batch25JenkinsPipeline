@@ -34,27 +34,43 @@ stages {
                 bat "dotnet build ${env.PROJECT_PATH} -c Release --no-restore"
             }
         }
- stage('SonarQube Analysis') {
-			            steps {
-			                script {
-			                    // Assign tool inside script block
-			                    def scannerHome = tool 'SonarScanner for MSBuild'
-			
-			                    // Use withSonarQubeEnv inside script block
-			                    withSonarQubeEnv('MySonarQube') {
-			                        bat "\"${scannerHome}\\SonarScanner.MSBuild.exe\" begin /k:\"${Project_Name}\""
-			                        bat "dotnet build"
-			                        bat "\"${scannerHome}\\SonarScanner.MSBuild.exe\" end"
-			                    }
-			                }
-			            }
-			        }
+  stage('SonarQube Analysis') {
+    steps {
+        script {
+            def scannerHome = tool 'SonarScanner for MSBuild'
 
-stage('Test') {
-            steps {
-                echo 'Testing...'
+            withSonarQubeEnv('MySonarQube') {
+                // Step 1: Sonar Begin
+                bat """
+                \"${scannerHome}\\SonarScanner.MSBuild.exe\" begin ^
+                    /k:\"${env.Project_Name}_${env.BRANCH_NAME}\" ^
+                    /n:\"${env.Project_Name} (${env.BRANCH_NAME})\" ^
+                    /v:\"${env.BUILD_NUMBER}\" ^
+                    /d:sonar.cs.opencover.reportsPaths=\"**/coverage.opencover.xml\" ^
+                    /d:sonar.coverage.exclusions=\"**/*Migrations*/**\"
+                """
+
+                // Step 2: Build
+                bat "dotnet build ${env.SOLUTION_NAME} -c Release"
+
+				echo 'Testting...'
+                // Step 3: Test with Coverage
+               bat """
+    dotnet test ${env.SOLUTION_NAME} ^
+        --settings \"${WORKSPACE}\\coverlet.runsettings\" ^
+        --logger \"trx;LogFileName=TestResults.trx\" ^
+        /p:CollectCoverage=true ^
+        /p:CoverletOutput=\"${WORKSPACE}\\TestResults\\coverage.opencover.xml\" ^
+        /p:CoverletOutputFormat=opencover
+    """
+
+                // Step 4: Sonar End
+                bat "\"${scannerHome}\\SonarScanner.MSBuild.exe\" end"
             }
         }
+    }
+}
+
 
 stage('Deploy') {
             steps {
