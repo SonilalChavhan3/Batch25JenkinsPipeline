@@ -1,5 +1,5 @@
 ﻿using Batch25JenkinsPipeline.Models;
-using Batch25JenkinsPipline.Controllers;
+using Batch25JenkinsPipeline.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;

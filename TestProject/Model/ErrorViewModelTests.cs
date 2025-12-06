@@ -1,6 +1,6 @@
-﻿namespace Batch25JenkinsPipline.Tests.Models
+﻿namespace Batch25JenkinsPipeline.Tests.Models
 {
-    using Batch25JenkinsPipline.Models;
+    using Batch25JenkinsPipeline.Models;
 
     [TestFixture]
     public class ErrorViewModelTests

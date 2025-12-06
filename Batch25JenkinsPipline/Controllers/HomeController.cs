@@ -1,9 +1,9 @@
 using System.Diagnostics;
 using Batch25JenkinsPipeline.Models;
-using Batch25JenkinsPipline.Models;
+using Batch25JenkinsPipeline.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Batch25JenkinsPipline.Controllers
+namespace Batch25JenkinsPipeline.Controllers
 {
     public class HomeController : Controller
     {

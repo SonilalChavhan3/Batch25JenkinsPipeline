@@ -1,4 +1,4 @@
-namespace Batch25JenkinsPipline.Models
+namespace Batch25JenkinsPipeline.Models
 {
     public class ErrorViewModel
     {
