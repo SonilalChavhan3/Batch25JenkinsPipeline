@@ -3,7 +3,7 @@
 environment {
         DOTNET_ROOT = "C:\\Program Files\\dotnet"
         SOLUTION_NAME = "Batch25JenkinsPipeline.sln"
-        PROJECT_PATH = "Batch25JenkinsPipline\\Batch25JenkinsPipeline.csproj"
+        PROJECT_PATH = "Batch25JenkinsPipeline\\Batch25JenkinsPipeline.csproj"
         NEXUS_URL = "http://localhost:8081/repository/Batch25/"
         PS_SCRIPT_PATH = "C:\\Tools\\commonbuild\\NugetPackagePublish.ps1"
         Project_Name = "Batch25JenkinsPipeline"
