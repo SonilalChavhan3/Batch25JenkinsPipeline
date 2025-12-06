@@ -34,7 +34,7 @@ stages {
                 bat "dotnet build ${env.PROJECT_PATH} -c Release --no-restore"
             }
         }
-  stage('SonarQube Analysis') {
+  stage('SonarQube Analysis and Testing..') {
     steps {
         script {
             def scannerHome = tool 'SonarScanner for MSBuild'
@@ -71,11 +71,21 @@ stages {
     }
 }
 
-
-stage('Deploy') {
+	 stage('Create and Push NuGet Package') {
             steps {
-                echo 'Deploying...'
+                script {
+                    powershell """
+                        powershell.exe -NonInteractive -ExecutionPolicy Bypass `
+                        -File \"${env.PS_SCRIPT_PATH}\" `
+                        -ProjectName \"${env.Project_Name}\" `
+                        -BranchName \"${env.BRANCH_NAME}\" `
+                        -BuildNumber \"${env.BUILD_NUMBER}\" `
+                        -NexusUrl \"${env.NEXUS_URL}\" 
+                    """
+                    
+                }
             }
         }
+
     }
 }
