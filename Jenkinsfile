@@ -78,6 +78,7 @@ stages {
                         powershell.exe -NonInteractive -ExecutionPolicy Bypass `
                         -File \"${env.PS_SCRIPT_PATH}\" `
                         -ProjectName \"${env.Project_Name}\" `
+						-ProjectPath \"${env.PROJECT_PATH}\" `
                         -BranchName \"${env.BRANCH_NAME}\" `
                         -BuildNumber \"${env.BUILD_NUMBER}\" `
                         -NexusUrl \"${env.NEXUS_URL}\" 
