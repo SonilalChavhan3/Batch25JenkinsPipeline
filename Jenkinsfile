@@ -15,7 +15,7 @@ stages {
 	  stage('Checkout') {
             steps {
                 echo "[${new Date().format('HH:mm:ss')}] Cleaning workspace..."
-                deleteDir()
+              
                 checkout scm
             }
         }
