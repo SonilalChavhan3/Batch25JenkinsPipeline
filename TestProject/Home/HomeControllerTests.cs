@@ -74,7 +74,7 @@ public class HomeControllerTests
 
         // Assert
         Assert.That(model, Is.Not.Null);
-        Assert.That(model.Count, Is.EqualTo(8));
+        Assert.That(model.Count, Is.EqualTo(11));
     }
 
     // ... rest of the tests with 'using var controller' in each test method

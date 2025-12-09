@@ -1,7 +1,6 @@
-using System.Diagnostics;
-using Batch25JenkinsPipeline.Models;
 using Batch25JenkinsPipeline.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace Batch25JenkinsPipeline.Controllers
 {
@@ -25,7 +24,11 @@ namespace Batch25JenkinsPipeline.Controllers
                 new Product(5, "Wireless Headphones", 149.99m, "Electronics", true),
                 new Product(6, "Notebook", 8.99m, "Office Supplies", true),
                 new Product(7, "Desk Lamp", 34.99m, "Home & Kitchen", true),
-                new Product(8, "Backpack", 59.99m, "Accessories", true)
+                new Product(8, "Backpack", 69.99m, "Office Supplies", true),
+                 new Product(9, "Pen", 79.99m, "Office Supplies", true),
+                  new Product(10, "Erasor", 89.99m, "Office Supplies", true),
+                   new Product(11, "Pocket", 9.99m, "Office Supplies", true)
+
             };
             return View(products);
         }
